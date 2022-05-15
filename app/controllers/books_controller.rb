@@ -6,6 +6,10 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = @book.user
     @book_new = Book.new
+    # 6⃣コメント機能
+    @book_comment = BookComment.new
+    @book_comments = @book.book_comments
+    # いいね機能
   end
 
   def index
