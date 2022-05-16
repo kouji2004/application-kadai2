@@ -10,7 +10,8 @@
   		<h2>Book detail</h2>
   		<table class='table'>
   		  <tr>
-          <td><%= link_to(@book.user) do %>
+  		    <!--本を投稿したユーザー@book.user-->
+          <td><%= link_to (@book.user) do %>
             <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
             <%= @book.user.name %>
             <% end %>
@@ -32,14 +33,14 @@
           <div>
             	<table class='table'>
 
-            <% @book_comments.each do |book_comments| %>
+            <% @book.book_comments.each do |book_comment| %>
             <tr>
               <td>
-                <%= image_tag book_comments.user.get_profile_image, size:"100x100" %><br>
-                <%= link_to book_comments.user.name, user_path(@user) %>
+                <%= image_tag book_comment.user.get_profile_image, size:"100x100" %><br>
+                <%= link_to book_comment.user.name, user_path(@user) %>
               </td>
               <td>
-                <%= book_comments.comment %>
+                <%= book_comment.comment %>
               </td>
 
                 <!--いいね機能-->
@@ -60,12 +61,8 @@
               </td>
 
               <td>
-                <!--7⃣idを二つ指定する必要がある。1つめログインしているユーザー(current_user)
-                bookにコメントをしたユーザー(book_comments.user_id)-->
-                <% if current_user.id == book_comments.user_id %>
-                <!--destroy bookのbookコメントを削除したいので、book_book_comment_pathとなる
-                @bookの中からbookのコメントを一つ探したいので@book,book_comments.idとなる-->
-                <%= link_to "destroy", book_book_comment_path(@book,book_comments.id), method: :delete,class:"btn btn-danger btn-group-sm"  %>
+                <% if current_user.id == book_comment.user_id %>
+                   <%= link_to "destroy", book_book_comment_path(@book,book_comment.id), method: :delete,class:"btn btn-danger btn-group-sm"  %>
                 <% end %>
               </td>
             </tr>

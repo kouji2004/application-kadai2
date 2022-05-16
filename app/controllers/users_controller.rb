@@ -6,11 +6,13 @@ before_action :authenticate_user!, except: [:top]
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books
+    @users_relationship = User.all
   end
 
   def index
     @users = User.all
     @book = Book.new
+    @users_relationship= User.all
   end
 
   def edit

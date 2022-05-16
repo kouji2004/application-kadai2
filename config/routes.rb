@@ -11,6 +11,13 @@ Rails.application.routes.draw do
           # 4⃣コメント機能
           resources :book_comments, only: [:create, :destroy]
  end
-  resources :users, only: [:index,:show,:edit,:update]
+
+
+  resources :users, only: [:index,:show,:edit,:update]do
+    # 5⃣フォローフォロワー機能
+       resource :relationships, only: [:create, :destroy]
+          get 'followings' => 'relationships#followings', as: 'followings'
+          get 'followers' => 'relationships#followers', as: 'followers'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

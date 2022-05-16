@@ -8,13 +8,15 @@ class BooksController < ApplicationController
     @book_new = Book.new
     # 6⃣コメント機能
     @book_comment = BookComment.new
-    @book_comments = @book.book_comments
+    # @book_comments = @book.book_comments
+
     # いいね機能
   end
 
   def index
     @books = Book.all
     @book = Book.new
+    @users_relationship= User.all
   end
 
   def create
