@@ -18,15 +18,20 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
-                <% if @user.id == current_user.id %>
-             <td>
-                <%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-group-sm btn-success" %>
-             </td>
-             <td>
-                <%= link_to "Destroy", book_path(@book.id) , method: :delete, class:"btn btn-danger btn-group-sm"  %>
-             </td>
-             <% end %>
-             <td>コメント件数：<%= @book.book_comments.count %></td>
+
+              <!--いいね機能-->
+          <td id ="favorite_buttons_<%= @book.id %>">
+             <%=render 'favorites/favorite-btn', book: @book %>
+          <td>
+            <% if @user.id == current_user.id %>
+         <td>
+            <%= link_to "Edit", edit_book_path(@book.id), class:"btn btn-group-sm btn-success" %>
+         </td>
+         <td>
+            <%= link_to "Destroy", book_path(@book.id) , method: :delete, class:"btn btn-danger btn-group-sm"  %>
+         </td>
+         <% end %>
+         <td>コメント件数：<%= @book.book_comments.count %></td>
         </tr>
       </table>
 
@@ -43,10 +48,6 @@
                 <%= book_comment.comment %>
               </td>
 
-                <!--いいね機能-->
-              <td class="favorite-btn">
-                 <%=render 'favorites/favorite-btn', book: @book %>
-              <td>
                 <% if current_user.id == book_comment.user_id %>
                    <%= link_to "destroy", book_book_comment_path(@book,book_comment.id), method: :delete,class:"btn btn-danger btn-group-sm"  %>
                 <% end %>
