@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'searchs/top'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
 
@@ -6,6 +7,8 @@ Rails.application.routes.draw do
   get "home/about"=>"homes#about"
 
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update]do
+    # 1⃣検索フォーム
+    get 'searchs/about', to: "searchs#top", as: "search"
       # 4⃣いいね機能
       resource :favorites, only: [:create, :destroy]
           # 4⃣コメント機能
