@@ -9,6 +9,7 @@ class BooksController < ApplicationController
     # 6⃣コメント機能
     @book_comment = BookComment.new
     # @book_comments = @book.book_comments
+     @users_relationship =User.all
 
     # いいね機能
   end
