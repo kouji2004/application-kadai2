@@ -18,6 +18,7 @@ class BooksController < ApplicationController
     @books = Book.all
     @book = Book.new
     @users_relationship= User.all
+    @user = current_user
   end
 
   def create
