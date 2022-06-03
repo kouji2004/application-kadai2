@@ -11,7 +11,11 @@ class BooksController < ApplicationController
     # @book_comments = @book.book_comments
      @users_relationship =User.all
 
-    # いいね機能
+      # 閲覧機能
+      @book_detail = Book.find(params[:id])
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book_detail.id)
+      current_user.view_counts.create(book_id: @book_detail.id)
+    end
   end
 
   def index

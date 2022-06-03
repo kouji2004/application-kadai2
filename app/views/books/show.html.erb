@@ -34,14 +34,12 @@
          <td>コメント件数：<%= @book.book_comments.count %></td>
         </tr>
       </table>
-
+<p class="view-count">👀数: <%= @book_detail.view_counts.count %></p>
           <div>
-            	<table class='table'>
-
+            <table class='table'>
             <% @book.book_comments.each do |book_comment| %>
             <tr>
               <td>
-
                 <%= link_to book_comment.user.name, user_path(@user) %>
               </td>
               <td>

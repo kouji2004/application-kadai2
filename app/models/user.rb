@@ -40,6 +40,14 @@ class User < ApplicationRecord
                     followings.include?(user)
                   end
 
+
+       has_many :view_counts, dependent: :destroy
+
+    # DM機能
+    has_many :user_rooms, dependent: :destroy
+    has_many :chats, dependent: :destroy
+
+
   def get_profile_image(size)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
