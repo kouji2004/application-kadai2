@@ -44,8 +44,9 @@ class User < ApplicationRecord
        has_many :view_counts, dependent: :destroy
 
     # DM機能
-    has_many :user_rooms, dependent: :destroy
-    has_many :chats, dependent: :destroy
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms, through: :user_rooms
 
 
   def get_profile_image(size)
